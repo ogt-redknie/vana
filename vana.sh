@@ -1,11 +1,22 @@
 #!/bin/bash
-
+# 设置颜色变量
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
 # DLP Validator 安装路径
 DLP_PATH="$HOME/vana-dlp-chatgpt"
+
+# 检查是否以root用户运行脚本
+if [ "$(id -u)" != "0" ]; then
+    echo "此脚本需要以root用户权限运行。"
+    echo "请尝试使用 'sudo -i' 命令切换到root用户，然后再次运行此脚本。"
+    exit 1
+fi
+
 # 安装必要的依赖
 function install_dependencies() {
     echo "安装必要的依赖..."
-     apt update && apt upgrade -y
+    apt update && apt upgrade -y
     apt install -y curl wget jq make gcc nano git software-properties-common
 }
 
@@ -45,11 +56,7 @@ function install_nodejs_and_npm() {
         echo "npm 已安装，版本: $(npm -v)"
     else
         echo "npm 未安装，正在安装..."
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
-		echo 'export NVM_DIR="$HOME/.nvm"' >> $HOME/.bash_profile
-        echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm' >> $HOME/.bash_profile
-        echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion' >> $HOME/.bash_profile
-        source $HOME/.bash_profile
+        apt-get install -y npm
     fi
 }
 
@@ -282,9 +289,9 @@ function uninstall_node() {
 # 主菜单
 function main_menu() {
     clear
-    echo "脚本以及教程由推特用户大赌哥 @y95277777与推特用户随风@Simon_feng888 编写"
+    echo "脚本以及教程由推特用户大赌哥 @y95277777 编写，随风"
     echo "========================= VANA DLP Validator 节点安装 ======================================="
-    echo "阿尔法俱乐部"
+    echo "阿尔法随风工作室"
     echo "节点社区 Telegram 频道:https://t.me/niuwuriji"
     echo "节点社区 Discord 社群:https://discord.gg/GbMV5EcNWF"    
     echo "请选择要执行的操作:"
