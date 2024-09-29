@@ -1,8 +1,5 @@
 #!/bin/bash
-# 设置颜色变量
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-NC='\033[0m' # No Color
+
 # DLP Validator 安装路径
 DLP_PATH="$HOME/vana-dlp-chatgpt"
 
@@ -86,7 +83,7 @@ function clone_and_install_repos() {
     echo "安装 Poetry 依赖..."
     pip install poetry
     poetry install
-	poetry run setup
+	
 
     echo "安装 Vana CLI..."
     pip install vana
@@ -289,9 +286,9 @@ function uninstall_node() {
 # 主菜单
 function main_menu() {
     clear
-    echo "脚本以及教程由推特用户大赌哥 @y95277777 编写，随风"
+    echo "脚本以及教程由推特用户随风编写，免费开源，请勿相信收费"
     echo "========================= VANA DLP Validator 节点安装 ======================================="
-    echo "阿尔法随风工作室"
+    echo "节点社区 Telegram 群组:https://t.me/niuwuriji"
     echo "节点社区 Telegram 频道:https://t.me/niuwuriji"
     echo "节点社区 Discord 社群:https://discord.gg/GbMV5EcNWF"    
     echo "请选择要执行的操作:"
